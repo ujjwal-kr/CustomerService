@@ -5,11 +5,7 @@ const Task = use('App/Models/Task')
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 
-/**
- * Resourceful controller for interacting with tasks
- */
 class TaskController {
-
 
   /**
    * Create/save a new task.
