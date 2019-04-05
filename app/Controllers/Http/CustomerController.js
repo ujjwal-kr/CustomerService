@@ -4,12 +4,12 @@ const Customer = use('App/Models/Customer')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
  * Resourceful controller for interacting with customers
  */
 class CustomerController {
+
   /**
    * Show a list of all customers.
    * GET customers 
@@ -17,7 +17,6 @@ class CustomerController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async index({ request, response }) {
     const customers = await Customer.all();
@@ -42,7 +41,7 @@ class CustomerController {
     const customer = await Customer.create(body);
     return response.status(201).json({
       msg: "Post Created Successfully",
-      customers
+      customer
     });
   }
 
@@ -53,7 +52,6 @@ class CustomerController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async show({ response, params: { id } }) {
     const customer = await Customer.find(id);
@@ -71,7 +69,6 @@ class CustomerController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async fetchWithProjects({ response, params: { id } }) {
     const customer = await Customer.find(id)
@@ -123,6 +120,7 @@ class CustomerController {
       id
     });
   }
+
 }
 
 module.exports = CustomerController;

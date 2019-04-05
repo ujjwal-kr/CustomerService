@@ -5,7 +5,6 @@ const Customer = use('App/Models/Customer')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
  * Resourceful controller for interacting with projects
@@ -58,7 +57,6 @@ class ProjectController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async fetchWithTasks({ response, params: { id } }) {
     const project = await Project.find(id)

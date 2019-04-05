@@ -12,7 +12,7 @@ class FindCustomer {
    * @param {Request} ctx.request
    * @param {Function} next
    */
-  async handle ({ response, params: {id} }, next) {
+  async handle ({ response, params: { id } }, next) {
     const customer = await Customer.find(id)
 
     if(!customer){
