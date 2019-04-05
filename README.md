@@ -18,7 +18,7 @@
 # Setup
 
 1. Install Adonis CLI `npm i -g @adonisjs/cli`
-2. Copy this Repository and `cd` into it.
+2. Clone this Repository and `cd` into it.
 3. Run `npm install`
 4. Install `npm install --save mysql`
 5. Configure `.env file if needed`
