@@ -1,5 +1,4 @@
 'use strict'
-const Joi = require('joi')
 const Project = use('App/Models/Project')
 const Customer = use('App/Models/Customer')
 
@@ -19,34 +18,25 @@ class ProjectController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
-    const body = await request.only(['name', 'description', 'customer_id'])
-
-    const schema = {
-      customer_id : Joi.string().required().min(1)
-    }
-    const result = Joi.validate(request.only(['customer_id']), schema)
-    if (result.error){
-      const errorMsg = result.error.details[0].message
-      console.log(errorMsg)
+  async store ({ request, response, params: { id } }) {
+    const customer = await Customer.find(id)
+    if (!customer){
       return response.status(400).json({
-        errorMsg
+        msg : 'Customer not found to assign project',
+        id
       })
     }else{
-      const id = await request.all().customer_id
-      const customer = await Customer.find(id)
-      if(!customer){
-        return response.json({
-          msg: 'Customer not found to assign project',
-          id
-        })
-      }else{
-        const project = await Project.create(body)
-        return response.status(201).json({
-          message: 'Successfully created a new project for the customer.',
-          project
-        }) 
-      }
+      const project = new Project()
+
+      project.name = await request.all().name
+      project.description = await request.all().description
+      project.customer_id = id
+
+      project.save()
+      return response.status(201).json({
+        msg: 'Project assigned to customer',
+        project
+      })
     }
   }
 
