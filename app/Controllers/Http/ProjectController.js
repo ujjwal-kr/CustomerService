@@ -19,25 +19,17 @@ class ProjectController {
    * @param {Response} ctx.response
    */
   async store ({ request, response, params: { id } }) {
-    const customer = await Customer.find(id)
-    if (!customer){
-      return response.status(400).json({
-        msg : 'Customer not found to assign project',
-        id
-      })
-    }else{
-      const project = new Project()
+    const project = new Project()
 
-      project.name = await request.all().name
-      project.description = await request.all().description
-      project.customer_id = id
+    project.name = await request.all().name
+    project.description = await request.all().description
+    project.customer_id = id
 
-      project.save()
-      return response.status(201).json({
-        msg: 'Project assigned to customer',
-        project
-      })
-    }
+    project.save()
+    return response.status(201).json({
+       msg: 'Project assigned to customer',
+       project
+    })
   }
 
   /**

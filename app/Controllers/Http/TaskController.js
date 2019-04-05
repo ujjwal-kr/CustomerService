@@ -1,7 +1,5 @@
 'use strict'
 
-const Joi = require('joi')
-const Project = use('App/Models/Project')
 const Task = use('App/Models/Task')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
@@ -21,36 +19,18 @@ class TaskController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
-    const body = request.only(['name', 'description', 'project_id'])
+  async store ({ request, response, params: { id } }) {
+    const task = new Task()
 
-    const schema = {
-      project_id : Joi.string().required().min(1)
-    }
+    task.name = await request.name
+    task.description = await request.description
+    task.project_id = id
+    task.save()
 
-    const result = Joi.validate(request.only(['project_id']), schema)
-    if(result.error){
-      const errorMsg = result.error.details[0].message
-      return response.json({
-        errorMsg
-      })
-    }else{
-      const id = await request.all().project_id
-      const project = await Project.find(id)
-      if(!project){
-        return response.json({
-          msg: 'Project not found to assign task',
-          id
-        })
-      }else{
-        const task = await Task.create(body)
-  
-        return response.status(201).json({
-          message: 'Successfully created a new task.',
-          data: task
-        }) 
-      }
-    }
+    return response.status(201).json({
+      msg: 'Sucessfully asigned task for the Project',
+      task
+    })
   }
 
   /**
