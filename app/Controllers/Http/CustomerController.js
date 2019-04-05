@@ -12,7 +12,7 @@ const Customer = use('App/Models/Customer')
 class CustomerController {
   /**
    * Show a list of all customers.
-   * GET customers
+   * GET customers 
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -24,7 +24,7 @@ class CustomerController {
 
     return response.json({
       msg: 'Fetched all customers',
-      data: customers
+      customers
     })
   }
 
@@ -42,7 +42,7 @@ class CustomerController {
     const customer = await Customer.create(body);
     return response.status(201).json({
       msg: "Post Created Successfully",
-      data: customer
+      customers
     });
   }
 
