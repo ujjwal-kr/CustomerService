@@ -89,7 +89,7 @@ class ProjectController {
           msg: 'Sucessfully deleted project',
           id
         })
-    }
+  }
 }
 
 module.exports = ProjectController
