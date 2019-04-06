@@ -18,10 +18,10 @@ class TaskController {
   async store ({ request, response, params: { id } }) {
     const task = new Task()
 
-    task.name = await request.name
-    task.description = await request.description
+    task.name = await request.all().name
+    task.description = await request.all().description
     task.project_id = id
-    task.save()
+    await task.save()
 
     return response.status(201).json({
       msg: 'Sucessfully asigned task for the Project',

@@ -1,6 +1,5 @@
 'use strict'
 const Project = use('App/Models/Project')
-const Customer = use('App/Models/Customer')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -25,7 +24,7 @@ class ProjectController {
     project.description = await request.all().description
     project.customer_id = id
 
-    project.save()
+    await project.save()
     return response.status(201).json({
        msg: 'Project assigned to customer',
        project
