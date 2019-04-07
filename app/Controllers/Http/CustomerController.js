@@ -1,6 +1,7 @@
 "use strict";
 
-const Customer = use('App/Models/Customer')
+const Customer = use("App/Models/Customer");
+const Database = use("Database");
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -9,10 +10,9 @@ const Customer = use('App/Models/Customer')
  * Resourceful controller for interacting with customers
  */
 class CustomerController {
-
   /**
    * Show a list of all customers.
-   * GET customers 
+   * GET customers
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -22,9 +22,9 @@ class CustomerController {
     const customers = await Customer.all();
 
     return response.json({
-      msg: 'Fetched all customers',
+      msg: "Fetched all customers",
       customers
-    })
+    });
   }
 
   /**
@@ -63,6 +63,26 @@ class CustomerController {
   }
 
   /**
+   * Display limited customers
+   * GET customers/:limit
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   */
+  async limitByNum({ response, params: { limit } }) {
+    const customers = await Database.table("customers")
+      .orderBy('id', 'desc')
+      .offset(0)
+      .limit(limit);
+
+    return response.status(200).json({
+      msg: "Sucessfully fetched customers",
+      customers
+    });
+  }
+
+  /**
    * Display a single customer's  projects with the given customers ID.
    * GET projects/customerID
    *
@@ -71,8 +91,8 @@ class CustomerController {
    * @param {Response} ctx.response
    */
   async fetchWithProjects({ response, params: { id } }) {
-    const customer = await Customer.find(id)
-    const projects = await customer.projects().fetch()
+    const customer = await Customer.find(id);
+    const projects = await customer.projects().fetch();
 
     return response.status(200).json({
       msg: "Found projects for the given customer",
@@ -120,7 +140,6 @@ class CustomerController {
       id
     });
   }
-
 }
 
 module.exports = CustomerController;
