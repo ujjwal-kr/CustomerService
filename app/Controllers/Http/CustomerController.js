@@ -14,17 +14,36 @@ class CustomerController {
    * Show a list of all customers.
    * GET customers
    *
+   * IF LIMIT IS GIVEN,
+   *
+   * Display limited customers
+   * GET customers/:limit?
+   *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async index({ request, response }) {
-    const customers = await Customer.all();
+    const query = await request.get();
+    console.log(query)
+    if (query.limit||query.orderBy) {
+      const limitedCustomers = await Database.table("customers")
+      .orderBy("id", query.orderBy)
+      .offset(0)
+      .limit(query.limit)
 
-    return response.json({
-      msg: "Fetched all customers",
-      customers
-    });
+      return response.status(200).json({
+        msg: 'Sucessfully fetched customer with specified limit',
+        limitedCustomers
+      })
+    }
+    else {
+      const customers = await Customer.all();
+      return response.json({
+        msg: "Fetched all customers",
+        customers
+      });
+    }
   }
 
   /**
@@ -59,26 +78,6 @@ class CustomerController {
     return response.status(200).json({
       msg: "Sucessfully fetched customer",
       data: customer
-    });
-  }
-
-  /**
-   * Display limited customers
-   * GET customers/:limit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async limitByNum({ response, params: { limit } }) {
-    const customers = await Database.table("customers")
-      .orderBy('id', 'desc')
-      .offset(0)
-      .limit(limit);
-
-    return response.status(200).json({
-      msg: "Sucessfully fetched customers",
-      customers
     });
   }
 

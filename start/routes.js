@@ -9,7 +9,6 @@ Route.post('customers', 'CustomerController.store').middleware(['validate', 'cnu
 Route.get('customers/:id', 'CustomerController.show').middleware(['findCustomer'])
 Route.patch('customers/:id', 'CustomerController.update').middleware(['findCustomer', 'validate', 'cnull'])
 Route.delete('customers/:id', 'CustomerController.destroy').middleware(['findCustomer'])
-Route.get('customers/limit/:limit', 'CustomerController.limitByNum')
 
 // GET Customer's Projects
 Route.get('customers/:id/projects', 'CustomerController.fetchWithProjects').middleware(['findCustomer'])
