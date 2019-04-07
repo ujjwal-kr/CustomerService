@@ -22,7 +22,6 @@ class Validate {
 
     if (result.error){
       const errorMsg = result.error.details[0].message
-      console.log(errorMsg)
       return response.status(400).json({
         errorMsg
       })
