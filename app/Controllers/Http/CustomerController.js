@@ -25,7 +25,6 @@ class CustomerController {
    */
   async index({ request, response }) {
     const query = await request.get();
-    console.log(query)
     if (query.limit||query.orderBy) {
       const limitedCustomers = await Database.table("customers")
       .orderBy("id", query.orderBy)
