@@ -1,6 +1,7 @@
 'use strict'
 
 const Joi = require('joi')
+const schema = require('./schemas/validate.schema')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -13,11 +14,6 @@ class Validate {
    * @param {Function} next
    */
   async handle ({ request, response }, next) {
-    const schema = {
-      name: Joi.string().min(4).required(),
-      description: Joi.string().min(6).required()
-    }
-
     const result = Joi.validate(request.only(['name', 'description']), schema)
 
     if (result.error){
