@@ -17,6 +17,7 @@ class FindTask {
 
     if(!task){
       return response.status(404).json({
+        success: false,
         msg: 'Task not found',
         id
       })

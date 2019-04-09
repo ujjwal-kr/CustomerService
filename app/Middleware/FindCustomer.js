@@ -18,6 +18,7 @@ class FindCustomer {
     if(!customer){
       console.log('Customer Not Found')
       return response.status(404).json({
+        success: false,
         msg: 'customer not found',
         id
       })

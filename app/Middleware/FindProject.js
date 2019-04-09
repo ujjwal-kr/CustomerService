@@ -17,6 +17,7 @@ class FindProject {
 
     if(!project){
       return response.status(404).json({
+        success: false,
         msg: 'Project not found',
         id
       })
