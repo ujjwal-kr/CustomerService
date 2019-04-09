@@ -24,7 +24,7 @@ class TaskController {
     await task.save()
 
     return response.status(201).json({
-      msg: 'Sucessfully asigned task for the Project',
+      msg: 'Successfully asigned task for the Project',
       task
     })
   }
@@ -46,7 +46,7 @@ class TaskController {
       await task.save()
 
       return response.status(201).json({
-        msg: 'Sucessfully updated task',
+        msg: 'Successfully updated task',
         data: task
       })
   }
@@ -64,7 +64,7 @@ class TaskController {
     await task.delete()
 
     return response.status(201).json({
-      msg: 'Sucessfully deleted task',
+      msg: 'Successfully deleted task',
       id
     })
   }

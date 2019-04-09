@@ -68,7 +68,7 @@ class ProjectController {
       await project.save()
 
       return response.status(201).json({
-        msg: 'Sucessfully updated project',
+        msg: 'Successfully updated project',
         project
       })
   }
@@ -86,7 +86,7 @@ class ProjectController {
 
         await project.delete()
         return response.status(201).json({
-          msg: 'Sucessfully deleted project',
+          msg: 'Successfully deleted project',
           id
         })
   }

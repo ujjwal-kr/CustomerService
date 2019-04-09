@@ -32,7 +32,7 @@ class CustomerController {
       .limit(query.limit)
 
       return response.status(200).json({
-        msg: 'Sucessfully fetched customer with specified limit',
+        msg: 'Successfully fetched customer with specified limit',
         limitedCustomers
       })
     }
@@ -75,7 +75,7 @@ class CustomerController {
     const customer = await Customer.find(id);
 
     return response.status(200).json({
-      msg: "Sucessfully fetched customer",
+      msg: "Successfully fetched customer",
       data: customer
     });
   }
