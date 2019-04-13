@@ -26,14 +26,14 @@ class CustomerController {
   async index({ request, response }) {
     const query = await request.get();
     if (query.limit||query.orderBy) {
-      const limitedCustomers = await Database.table("customers")
+      const customers = await Database.table("customers")
       .orderBy("id", query.orderBy)
       .offset(0)
       .limit(query.limit)
 
       return response.status(200).json({
         msg: 'Successfully fetched customer with specified limit',
-        limitedCustomers
+        customers
       })
     }
     else {
