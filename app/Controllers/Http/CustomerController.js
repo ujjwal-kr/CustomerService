@@ -3,8 +3,6 @@
 const Customer = use("App/Models/Customer");
 const Database = use("Database");
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
 
 /**
  * Resourceful controller for interacting with customers
@@ -19,9 +17,7 @@ class CustomerController {
    * Display limited customers
    * GET customers/:limit?
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
 
    
@@ -53,9 +49,7 @@ class CustomerController {
    * Create/save a new customer.
    * POST customers
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async store({ request, response }) {
     const body = await request.only(["name", "description"]);
@@ -71,9 +65,7 @@ class CustomerController {
    * Display a single customer.
    * GET customers/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async show({ response, params: { id } }) {
     const customer = await Customer.find(id);
@@ -88,9 +80,7 @@ class CustomerController {
    * Display a single customer's  projects with the given customers ID.
    * GET projects/customerID
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async fetchWithProjects({ response, params: { id } }) {
     const customer = await Customer.find(id);
@@ -107,9 +97,7 @@ class CustomerController {
    * Update customer details.
    * PUT or PATCH customers/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   *
    */
   async update({ request, response, params: { id } }) {
     const customer = await Customer.find(id);
@@ -129,9 +117,7 @@ class CustomerController {
    * Delete a customer with id.
    * DELETE customers/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async destroy({ params: { id }, response }) {
     const customer = await Customer.find(id);

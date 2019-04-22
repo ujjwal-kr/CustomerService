@@ -1,8 +1,6 @@
 'use strict'
 const Project = use('App/Models/Project')
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
 
 /**
  * Resourceful controller for interacting with projects
@@ -13,9 +11,7 @@ class ProjectController {
    * Create/save a new project.
    * POST projects
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async store ({ request, response, params: { id } }) {
     const project = new Project()
@@ -45,9 +41,7 @@ class ProjectController {
    * Display a single customer's  projects with the given customers ID.
    * GET project/:id/tasks
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   *
    */
   async fetchWithTasks({ response, params: { id } }) {
     const project = await Project.find(id)
@@ -64,9 +58,7 @@ class ProjectController {
    * Update project details.
    * PUT or PATCH projects/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async update ({ params: { id }, request, response }) {
     const { name, description } = await request.all()
@@ -87,9 +79,7 @@ class ProjectController {
    * Delete a project with id.
    * DELETE projects/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async destroy ({ params: { id }, request, response }) {
     const project = await Project.find(id)

@@ -2,8 +2,6 @@
 
 const Task = use('App/Models/Task')
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
 
 class TaskController {
 
@@ -11,9 +9,7 @@ class TaskController {
    * Create/save a new task.
    * POST tasks
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   *
    */
   async store ({ request, response, params: { id } }) {
     const task = new Task()
@@ -33,9 +29,7 @@ class TaskController {
    * Update task details.
    * PUT or PATCH tasks/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async update ({ params: { id }, request, response }) {
     const { name, description } = await request.all()
@@ -55,9 +49,7 @@ class TaskController {
    * Delete a task with id.
    * DELETE tasks/:id
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * 
    */
   async destroy ({ params: { id }, response }) {
     const task = await Task.find(id)
