@@ -14,6 +14,7 @@ Route.delete('customers/:id', 'CustomerController.destroy').middleware(['findCus
 Route.get('customers/:id/projects', 'CustomerController.fetchWithProjects').middleware(['findCustomer'])
 
 //Projects
+Route.get('projects/:id', 'ProjectController.show').middleware(['findProject'])
 Route.post('customers/:id/projects', 'ProjectController.store').middleware('validate', 'findCustomer')
 Route.patch('projects/:id', 'ProjectController.update').middleware(['validate', 'findProject', 'cnull'])
 Route.delete('projects/:id', 'ProjectController.destroy').middleware(['findProject'])

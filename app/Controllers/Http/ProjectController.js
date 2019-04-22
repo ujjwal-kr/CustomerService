@@ -31,6 +31,16 @@ class ProjectController {
     })
   }
 
+
+  async show({ response, params: { id } }) {
+    const project = await Project.find(id)
+    return response.json({
+      msg: 'Found Prject',
+      project
+    })
+  }
+
+
   /**
    * Display a single customer's  projects with the given customers ID.
    * GET project/:id/tasks

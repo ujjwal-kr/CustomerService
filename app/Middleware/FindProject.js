@@ -16,6 +16,7 @@ class FindProject {
     const project = await Project.find(id)
 
     if(!project){
+      console.log('Project Not Found')
       return response.status(404).json({
         success: false,
         msg: 'Project not found',

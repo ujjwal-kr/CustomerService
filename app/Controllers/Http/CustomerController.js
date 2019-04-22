@@ -23,6 +23,8 @@ class CustomerController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
+
+   
   async index({ request, response }) {
     const query = await request.get();
     if (query.limit||query.orderBy) {
@@ -32,12 +34,14 @@ class CustomerController {
       .limit(query.limit)
 
       return response.status(200).json({
-        msg: 'Successfully fetched customer with specified limit',
+        msg: 'Successfully fetched customer with specified limit or order',
         customers
       })
     }
     else {
-      const customers = await Customer.all();
+      const customers = await Database.table("customers")
+      .orderBy("id", "desc")
+
       return response.json({
         msg: "Fetched all customers",
         customers
@@ -76,7 +80,7 @@ class CustomerController {
 
     return response.status(200).json({
       msg: "Successfully fetched customer",
-      data: customer
+      customer
     });
   }
 
