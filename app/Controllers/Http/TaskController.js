@@ -8,8 +8,6 @@ class TaskController {
   /**
    * Create/save a new task.
    * POST tasks
-   *
-   *
    */
   async store ({ request, response, params: { id } }) {
     const task = new Task()
@@ -28,8 +26,6 @@ class TaskController {
   /**
    * Update task details.
    * PUT or PATCH tasks/:id
-   *
-   * 
    */
   async update ({ params: { id }, request, response }) {
     const { name, description } = await request.all()
@@ -48,8 +44,6 @@ class TaskController {
   /**
    * Delete a task with id.
    * DELETE tasks/:id
-   *
-   * 
    */
   async destroy ({ params: { id }, response }) {
     const task = await Task.find(id)

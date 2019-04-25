@@ -2,16 +2,8 @@
 
 const Task = use('App/Models/Task')
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
-
 class FindTask {
-  /**
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Function} next
-   */
+  
   async handle ({params: { id }, request }, next) {
     const task = await Task.find(id)
 

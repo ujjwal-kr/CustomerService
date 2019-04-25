@@ -12,12 +12,9 @@ class CustomerController {
    * Show a list of all customers.
    * GET customers
    *
-   * IF LIMIT IS GIVEN,
-   *
+   * IF LIMIT IS GIVEN, + orders
    * Display limited customers
    * GET customers/:limit?
-   *
-   * 
    */
 
    
