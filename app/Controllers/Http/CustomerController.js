@@ -14,17 +14,14 @@ class CustomerController {
    *
    * IF LIMIT IS GIVEN, + orders
    * Display limited customers
-   * GET customers/:limit?
+   * GET customers/?limit="number"?orderBy="desc"
    */
 
-   
   async index({ request, response }) {
     const query = await request.get();
     if (query.limit||query.orderBy) {
-      const customers = await Database.table("customers")
-      .orderBy("id", query.orderBy)
-      .offset(0)
-      .limit(query.limit)
+      const customers = await Database.table("customers").orderBy("id", query.orderBy)
+      .offset(0).limit(query.limit)
 
       return response.status(200).json({
         msg: 'Successfully fetched customer with specified limit or order',
@@ -32,9 +29,7 @@ class CustomerController {
       })
     }
     else {
-      const customers = await Database.table("customers")
-      .orderBy("id", "desc")
-
+      const customers = await Database.table("customers").orderBy("id", "desc")
       return response.json({
         msg: "Fetched all customers",
         customers
@@ -45,8 +40,6 @@ class CustomerController {
   /**
    * Create/save a new customer.
    * POST customers
-   *
-   * 
    */
   async store({ request, response }) {
     const body = await request.only(["name", "description"]);
@@ -61,12 +54,10 @@ class CustomerController {
   /**
    * Display a single customer.
    * GET customers/:id
-   *
-   * 
    */
   async show({ response, params: { id } }) {
     const customer = await Customer.find(id);
-
+  
     return response.status(200).json({
       msg: "Successfully fetched customer",
       customer
@@ -74,10 +65,8 @@ class CustomerController {
   }
 
   /**
-   * Display a single customer's  projects with the given customers ID.
+   * Display a single customer's  projects with the given customers ID. 
    * GET projects/customerID
-   *
-   * 
    */
   async fetchWithProjects({ response, params: { id } }) {
     const customer = await Customer.find(id);
@@ -93,8 +82,6 @@ class CustomerController {
   /**
    * Update customer details.
    * PUT or PATCH customers/:id
-   *
-   *
    */
   async update({ request, response, params: { id } }) {
     const customer = await Customer.find(id);
@@ -113,8 +100,6 @@ class CustomerController {
   /**
    * Delete a customer with id.
    * DELETE customers/:id
-   *
-   * 
    */
   async destroy({ params: { id }, response }) {
     const customer = await Customer.find(id);

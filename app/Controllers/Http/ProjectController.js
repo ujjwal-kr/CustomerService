@@ -10,8 +10,6 @@ class ProjectController {
   /**
    * Create/save a new project.
    * POST projects
-   *
-   * 
    */
   async store ({ request, response, params: { id } }) {
     const project = new Project()
@@ -40,8 +38,6 @@ class ProjectController {
   /**
    * Display a single customer's  projects with the given customers ID.
    * GET project/:id/tasks
-   *
-   *
    */
   async fetchWithTasks({ response, params: { id } }) {
     const project = await Project.find(id)
@@ -57,8 +53,6 @@ class ProjectController {
   /**
    * Update project details.
    * PUT or PATCH projects/:id
-   *
-   * 
    */
   async update ({ params: { id }, request, response }) {
     const { name, description } = await request.all()
@@ -78,8 +72,6 @@ class ProjectController {
   /**
    * Delete a project with id.
    * DELETE projects/:id
-   *
-   * 
    */
   async destroy ({ params: { id }, request, response }) {
     const project = await Project.find(id)

@@ -8,14 +8,14 @@ class FindCustomer {
   async handle ({ response, params: { id } }, next) {
     const customer = await Customer.find(id)
 
-    if(!customer){
+    if (!customer){
       console.log('Customer Not Found')
       return response.status(404).json({
         success: false,
         msg: 'customer not found',
         id
       })
-    }else{
+    } else{
       return await next()   //Fire the controller
     }
   }

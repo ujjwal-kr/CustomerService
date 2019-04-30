@@ -17,6 +17,7 @@ class TaskSchema extends Schema {
       .references('projects.id')
       .onDelete('cascade')
     })
+
   }
 
   down () {
