@@ -22,6 +22,7 @@ Route.delete('projects/:id', 'ProjectController.destroy').middleware(['findProje
 Route.get('projects/:id/tasks', 'ProjectController.fetchWithTasks').middleware(['findProject'])
 
 //tasks
+Route.get('tasks/:id', 'TaskController.show').middleware(['findTask'])
 Route.post('projects/:id/tasks', 'TaskController.store').middleware('validate', 'findProject')
 Route.patch('tasks/:id', 'TaskController.update').middleware(['validate', 'cnull', 'findTask'])
 Route.delete('tasks/:id', 'TaskController.destroy').middleware(['findTask'])

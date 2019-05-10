@@ -40,7 +40,13 @@ class TaskController {
         data: task
       })
   }
+  async show({ response, params: {id}}){
+    const task = await Task.find(id)
 
+    return response.status(200).json({
+      task
+    })
+  }
   /**
    * Delete a task with id.
    * DELETE tasks/:id
