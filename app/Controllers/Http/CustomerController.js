@@ -76,7 +76,7 @@ class CustomerController {
 
     return response.status(200).json({
       msg: "Sucessfully fetched customer",
-      data: customer
+      customer
     });
   }
 
