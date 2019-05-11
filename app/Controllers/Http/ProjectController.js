@@ -83,12 +83,11 @@ class ProjectController {
    */
   async destroy ({ params: { id }, request, response }) {
     const project = await Project.find(id)
-
-        await project.delete()
-        return response.status(201).json({
-          msg: 'Sucessfully deleted project',
-          id
-        })
+      await project.delete()
+      return response.status(201).json({
+        msg: 'Sucessfully deleted project',
+        id
+      })
   }
 }
 
