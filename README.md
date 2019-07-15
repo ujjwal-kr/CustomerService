@@ -3,6 +3,7 @@
 ## A simple RESTful service for a startup to manage its customers, customer's projects and project's eqivalent tasks
 
 ### JOI validation is used as i was not that flimiliar with the adonisjs validators... 😅
+#### Try keeping an eye, authentication is coming soon... 😁 
 
 ## Project Overview      ~Request Arcitechture
 - Customers
